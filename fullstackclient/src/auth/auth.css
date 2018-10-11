@@ -1,0 +1,35 @@
+.auth-container {
+    margin-top:5em;
+    padding: 5em;
+    /* border: 1px solid #e5e5e5; */
+    /* border-radius: 0.4em; */
+    /* box-shadow: 2px 4px 20px #f0f0f0; */
+    background-color: rgba(255, 255, 255, 0.555);
+    padding-top: 50px;
+    padding-bottom: 50px;
+  } 
+  .login-col{
+    border-left: 5px solid black;
+  }
+
+  .loginbutton {
+    background-color: rgb(9, 7, 80);
+  }
+
+.bg{
+  background-image: url(https://images.unsplash.com/photo-1505246475357-190baf1fd53d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=371500c08dc09089af90710c29ff3af6&auto=format&fit=crop&w=1267&q=80);
+  height: 100%;
+  background-position: 50% 70%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1.logintitle {
+  font-size: 45pt;
+}
+
+h6.def {
+  font-size: 16pt;
+  font-weight: 500;
+  padding-left: 35px;
+}

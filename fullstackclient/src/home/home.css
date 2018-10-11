@@ -1,0 +1,36 @@
+footer {
+    background-color: rgba(223, 223, 223, 0.15);
+    color: black;
+    margin-top: 70px;
+}
+
+footer p {
+    /* margin-top: 08em!important; */
+    text-align: center;
+    padding:15px;
+}
+
+nav {
+    background-color: rgba(223, 223, 223, 0.15);
+}
+
+.fa-hand-holding-heart {
+    font-size: 25pt;
+    color: rgb(9, 7, 80);
+}
+
+.home {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.welcome {
+    text-align: center;
+}
+
+.map{
+    height: 75vh;
+    width: 55vw;
+    margin-right: 20px;
+    margin-left: 600px;
+}
