@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const validateSession = require('../middleware/validate-session')
 
 router.get('/', (req, res) => (
-    Org.find()
+    Org.findAll()
     .then(org => res.status(200).json(org))
     .catch(err => res.status(500).json({ error: err}))
 ))

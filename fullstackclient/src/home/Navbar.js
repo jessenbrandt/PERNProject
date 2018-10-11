@@ -37,7 +37,7 @@ class NavBar extends Component {
             <div>
                 <nav>
 
-                    <Navbar light expand="md" className="navbar">
+                    <Navbar light expand="md" className="navbar sticky-top">
                         <NavbarBrand tag={Link} to="/"><i className="fas fa-hand-holding-heart"></i></NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -60,6 +60,9 @@ class NavBar extends Component {
                                         Organizations
                                      </DropdownToggle>
                                     <DropdownMenu right>
+                                    <DropdownItem>
+                                            <NavLink tag={Link} to="/orgdata" active>List of Organizations</NavLink>
+                                        </DropdownItem>
                                         <DropdownItem>
                                             <NavLink tag={Link} to="/orgauthform" active>Login/ Signup</NavLink>
                                         </DropdownItem>

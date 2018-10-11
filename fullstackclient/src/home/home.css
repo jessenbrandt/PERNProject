@@ -12,6 +12,8 @@ footer p {
 
 nav {
     background-color: rgba(223, 223, 223, 0.15);
+    height: 50px;
+    display: inline-flex;
 }
 
 .fa-hand-holding-heart {
@@ -22,6 +24,7 @@ nav {
 .home {
     margin-top: 20px;
     margin-left: 20px;
+    display:flex;
 }
 
 .welcome {
@@ -30,7 +33,10 @@ nav {
 
 .map{
     height: 75vh;
-    width: 55vw;
-    margin-right: 20px;
-    margin-left: 600px;
+    width: 60vw;
+    right: 20px
+}
+
+.mainMap{
+    padding-left: 20%;
 }

@@ -42,7 +42,7 @@ class OrgSignup extends Component {
                 <h6 className="def">What becoming a member means for your Organization.</h6>
                 <Form onSubmit={this.handleSubmit} >
                     <FormGroup>
-                        <Label className="lable" for="org">Name of Organization></Label>
+                        <Label className="lable" for="org">Name of Organization</Label>
                         <Input id="org" type="text" name="org" placeholder="Enter Organization Name" onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>

@@ -1,15 +1,15 @@
 .auth-container {
-    margin-top:5em;
+    margin-top:3.5em;
     padding: 5em;
     /* border: 1px solid #e5e5e5; */
     /* border-radius: 0.4em; */
     /* box-shadow: 2px 4px 20px #f0f0f0; */
-    background-color: rgba(255, 255, 255, 0.555);
+    background-color: rgba(255, 255, 255, 0.651);
     padding-top: 50px;
     padding-bottom: 50px;
   } 
   .login-col{
-    border-left: 5px solid black;
+    border-left: 4px solid black;
   }
 
   .loginbutton {
@@ -25,11 +25,12 @@
 }
 
 h1.logintitle {
-  font-size: 45pt;
+  font-size: 35pt;
 }
 
 h6.def {
-  font-size: 16pt;
+  font-size: 15pt;
   font-weight: 500;
   padding-left: 35px;
+  padding-bottom: 20px;
 }
