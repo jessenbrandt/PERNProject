@@ -1,4 +1,19 @@
 .orgname {
-    padding-left: 2%;
-    padding-bottom: 2%;
+    margin-left: 1.5%;
+    margin-top: 1%;
+
 }
+
+.aboutorg {
+    margin-left: 4%;
+}
+
+/* .orgdisplay .aboutorg {
+    visibility: hidden;
+    z-index: 1;
+    
+}
+
+.orgdisplay:hover .aboutorg {
+    visibility: visible;
+} */

@@ -8,6 +8,7 @@ router.post('/createuser', (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
+        type: req.body.type,
         password: bcrypt.hashSync(req.body.password, 10)
     })
         .then(
@@ -19,7 +20,7 @@ router.post('/createuser', (req, res) => {
                     message: 'user created',
                     sessionToken: token
                 })
-            },
+            },  
             createError = err => res.send(500, err.message)
         )
 })
@@ -39,11 +40,11 @@ router.post('/signin', (req, res) => {
                                 sessionToken: token
                             })
                         } else {
-                            res.status(502).send({error: 'bad gateway'})
+                            res.status(500).send({error: "failed to authenticate"})
                         }
                     })
                 } else {
-                    res.status(500).send({error: "failed to authenticate"})
+                    res.status(502).send({error: 'bad gateway'})
                 }
             },
             err => res.status(501).send({error: 'failed to process'})

@@ -1,36 +1,38 @@
 import React from 'react';
-// import OrgResults from './OrgResults'
 import axios from 'axios';
 import './org.css';
+import DataResults from './DataResults';
 
 class OrgData extends React.Component {
-  
+
     constructor(props) {
         super(props);
         this.state = {
-                nameOfOrg: [],
+            results: []
         };
-    }
 
+    }
+ 
     componentDidMount() {
         axios.get('http://localhost:3000/org')
-        .then(res=> {
-            const nameOfOrg = res.data;
-            this.setState({nameOfOrg});
-        })
+            .then(res => {
+                const results = res.data;
+                this.setState({ results });
+            })
     }
 
     render() {
-        return(
-            <div className="orgname">
-                {this.state.nameOfOrg.map((org, i) => <h1  key={i}>{org.nameOfOrg}</h1>)}
+        console.log(this.state.results)
+        return (
+            <div>
+                <DataResults results={this.state.results} />
             </div>
         )
     }
 
-   
+
 }
-export default OrgData; 
+export default OrgData;
 
 
 

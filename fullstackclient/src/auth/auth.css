@@ -4,7 +4,7 @@
     /* border: 1px solid #e5e5e5; */
     /* border-radius: 0.4em; */
     /* box-shadow: 2px 4px 20px #f0f0f0; */
-    background-color: rgba(255, 255, 255, 0.651);
+    background-color: rgba(255, 255, 255, 0.733);
     padding-top: 50px;
     padding-bottom: 50px;
   } 
@@ -33,4 +33,12 @@ h6.def {
   font-weight: 500;
   padding-left: 35px;
   padding-bottom: 20px;
+}
+
+.radioButtons {
+  margin-left: 6%;
+}
+
+.radio {
+  margin-top: 9px;
 }

@@ -1,0 +1,19 @@
+.events {
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.eventform {
+    margin-left: 15%;
+    margin-top: 2%;
+    padding-top: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: center;
+    width: 70%;
+    border: 2px solid rgb(9, 7, 80);
+    height: 400px;
+    font-size: 15pt;
+    background-color: rgb(240, 237, 230);
+}

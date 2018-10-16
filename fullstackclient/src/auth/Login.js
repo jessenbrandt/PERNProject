@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import {Form, FormGroup, Label, Input, Button, Alert} from 'reactstrap';
+import axios from 'axios';
 import './auth.css'
 
 class Login extends Component {
@@ -7,7 +8,8 @@ class Login extends Component {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            showAlert: false
         };
     }
 
@@ -18,15 +20,19 @@ class Login extends Component {
     }
 
     handleSubmit= (e) => {
-        fetch("http://localhost:3000/user/signin", {
-            method: 'POST',
-            body: JSON.stringify({user:this.state}),
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
-        }).then ((response) => response.json()
-        ).then((data) => {
-            this.props.setToken(data.sessionToken)
+
+        axios.post("http://localhost:3000/user/signin", {user:this.state})
+        .then(response => {
+            console.log(response)
+            if (response.status !== 200) {
+                throw new Error('Authentication Failed')
+            }
+            this.setState({showAlert: false})
+            this.props.setToken(response.data.sessionToken);
+            window.location.href = "/" //redirect user to homepage on successful login
+        }).catch((error) => {
+            console.log(error);
+            this.setState({showAlert: true})
         })
         e.preventDefault()
     }
@@ -47,6 +53,7 @@ class Login extends Component {
                     </FormGroup>
                     <Button type="submit"  className="loginbutton"> Submit </Button>
                 </Form>
+                {this.state.showAlert && <Alert color='danger'>Incorrect Email or Password</Alert>}
             </div>
         )
     }

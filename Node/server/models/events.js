@@ -1,22 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
-    const Org = sequelize.define('org', {
-        nameOfOrg: {
+    const Events = sequelize.define('events', {
+        eventName: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        purpose: {
+        desription: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        location: {
+        eventLocation: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        needs: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+        }
     })
+    return Events;
 
-return Org;
 }

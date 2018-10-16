@@ -5,22 +5,24 @@ const jwt = require('jsonwebtoken');
 
 const validateSession = require('../middleware/validate-session')
 
-router.get('/', (req, res) => (
-    Org.findAll()
+router.get('/', (req, res) => ( 
+    Org.findAll({
+        attributes: ['nameOfOrg','location','needs','purpose']
+    })
     .then(org => res.status(200).json(org))
     .catch(err => res.status(500).json({ error: err}))
 ))
 
-router.post('/createOrg', (req, res) => {
+router.post('/createOrg', validateSession, (req, res) => {
     Org.create({
         nameOfOrg: req.body.nameOfOrg,
         purpose: req.body.purpose,
         location: req.body.location,
-        needs: req.body.location,
-        password: bcrypt.hashSync(req.body.password, 10)
-    })
+        needs: req.body.needs,
+    }).catch(err => {console.log(err)})
         .then(
             createSuccess = (org) => {
+                console.log('sdokjsdkf')
                 let token = jwt.sign({ id: org.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 })
 
                 res.json({
@@ -30,50 +32,7 @@ router.post('/createOrg', (req, res) => {
                 })
             },
             createError = err => res.send(500, err.message)
-        )
-})
-
-router.post('/orgsignin', (req, res) => {
-    Org.findOne({ where: { nameOfOrg: req.body.org.nameOfOrg } })
-        .then(
-            org => {
-                if (org) {
-                    bcrypt.compare(req.body.org.password, org.password, (err, matches) => {
-                        if (matches) {
-                            let token = jwt.sign({ id: org.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 })
-
-                            res.json({
-                                org: org,
-                                message: 'successfully authenticated',
-                                sessionToken: token
-                            })
-                        } else {
-                            res.status(502).send({error: 'bad gateway'})
-                        }
-                    })
-                } else {
-                    res.status(500).send({error: "failed to authenticate"})
-                }
-            },
-            err => res.status(501).send({error: 'failed to process'})
-        )
-})
-
-
-router.post('/add', validateSession, (req, res) => {
-    if (!req.errors) {
-        const orgFromRequest = {
-            nameOfOrg: req.body.nameOfOrg,
-            purpose: req.body.purpose,
-            location: req.body.location,
-            needs: req.body.needs,
-        }
-        Org.create(orgFromRequest)
-        .then(org => res.status(200).json(org))
-        .catch(err => res.json(req.errors))
-    } else {
-        res.status(500).json(req.errors)
-    }
+        ).catch(err => {console.log(err)})
 })
 
 router.get('/:nameofOrg', (req, res) => {
@@ -82,9 +41,9 @@ router.get('/:nameofOrg', (req, res) => {
     .catch(err => res.status(500).json({ error: err}))
 })
 
-router.put('/:id', validateSession, (req, res) => {
+router.put('/:nameOfOrg', validateSession, (req, res) => {
     if (!req.errors) {
-        Org.update(req.body,{ where: {id: req.params.id}})
+        Org.update(req.body,{ where: {nameOfOrg: req.params.nameOfOrg}})
         .then(org => res.status(200).json(org))
         .catch(err => res.json(req.errors))
     } else {
@@ -92,8 +51,8 @@ router.put('/:id', validateSession, (req, res) => {
     }
 });
 
-router.delete('/:id', validateSession, (req, res) => {
-    Org.destroy({where: {id: req.params.id}})
+router.delete('/:nameOfOrg', validateSession, (req, res) => {
+    Org.destroy({where: {nameOfOrg: req.params.nameOfOrg}})
     .then(org => res.status(200).json(org))
     .catch(err => res.status(500).json({error: err}))
 });
