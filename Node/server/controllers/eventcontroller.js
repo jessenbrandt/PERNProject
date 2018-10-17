@@ -20,10 +20,25 @@ router.post('/createEvent', (req, res) => {
 
 router.get('/', (req, res) => ( 
     Events.findAll({
-        attributes: ['eventName','description','eventLocation']
+        attributes: ['id', 'eventName','description','eventLocation']
     })
     .then(event => res.status(200).json(event))
     .catch(err => res.status(500).json({ error: err}))
-))
+));
 
+router.put('/:id', (req, res) => {
+    if (!req.errors) {
+        Events.update(req.body,{ where: {id: req.params.id}})
+        .then(event => res.status(200).json(event))
+        .catch(err => console.log(err))
+    } else {
+        res.status(500).json(req.errors)
+    }
+});
+
+router.delete('/:id', (req, res) => {
+    Events.destroy({where: {id: req.params.id}})
+    .then(event => res.status(200).json(event))
+    .catch(event => res.status(500).json({error: err}))
+});
 module.exports = router;

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button} from 'reactstrap'
+import { Button } from 'reactstrap'
 
 export default class DataResults extends React.Component {
-     createResults = () => {
-        if(!!this.props.results[0]) {
+    createResults = () => {
+        if (!!this.props.results[0]) {
             return this.props.results.map((index) => {
                 return (
                     <div key={index.id} className="orgdisplay">
@@ -11,16 +11,19 @@ export default class DataResults extends React.Component {
                         <p className='aboutorg'>{index.purpose}</p>
                         <p className='aboutorg'>{index.location}</p>
                         <p className='aboutorg'>{index.needs}</p>
-                        <Button color='warning' key={"a" + index.id} onClick={this.props.update}>Update</Button>
-                        <Button color='danger' key={"b" + index.id} onClick={this.props.delete}>Delete</Button>
+                        <span className="orgButton">
+                            <Button color='warning' key={"a" + index.id} onClick={this.props.update}>Update</Button>
+                            <Button color='danger' key={"b" + index.id} onClick={this.props.delete}>Delete</Button>
+                        </span>
                     </div>
-                )}
+                )
+            }
             )
         }
-            
-     }
 
-     render() {
+    }
+
+    render() {
         return (
             <div>
                 {this.createResults()}

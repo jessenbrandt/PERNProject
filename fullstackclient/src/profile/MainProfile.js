@@ -1,16 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import ProfileData from './ProfileData';
-import { Button, Form, Label, Input, FormGroup } from 'reactstrap'
+import { Form, Label, Input, FormGroup, Container, Row, Col } from 'reactstrap'
 import { Link } from "react-router-dom";
-
+import './profile.css'
+import EventProfile from './EventProfile';
 
 
 class MainProfile extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             results: [],
             updatePressed: false,
@@ -29,7 +30,7 @@ class MainProfile extends React.Component {
 
     handleChange = (e) => {
         let objectToChange = {};
-        Object.defineProperty(objectToChange, e.target.name, {value: e.target.value, writable: true, configurable: true, enumerable: true})
+        Object.defineProperty(objectToChange, e.target.name, { value: e.target.value, writable: true, configurable: true, enumerable: true })
         console.log(this.state);
         console.log(objectToChange);
         this.setState(objectToChange);
@@ -59,45 +60,59 @@ class MainProfile extends React.Component {
                 this.setState({ updatePressed: false })
                 this.forceUpdate();
             })
-            e.preventDefault()
+        e.preventDefault()
     }
-setUpdatedOrg = (e, org) => {
-    this.setState({
-        orgToUpdate: org,
-        updatePressed: true
-    })
-    e.preventDefault()
-}
+    setUpdatedOrg = (e, org) => {
+        this.setState({
+            orgToUpdate: org,
+            updatePressed: true
+        })
+        e.preventDefault()
+    }
     render() {
-        if(localStorage.getItem('type') == 'organization') {
+        console.log(this.state.results)
+        if (localStorage.getItem('type') === 'organization') {
 
-        return (
-            <div>
-                <ProfileData results={this.state.results} update={this.orgUpdate} delete={this.handleDelete} />
-                <p className='p'>Click <Link to="/eventtable"> here</Link> to Create an Event</p>
-                <p className='p'>Click <Link to="/profile"> here</Link> to tell us about your Organization</p>
-                
-            <Form>
-                <FormGroup>
-                    <Label>Name
+            return (
+                <div>
+                    <Container>
+                        <Row>
+                            <Col id='profiledata' md='6'>       <ProfileData results={this.state.results} update={this.orgUpdate} delete={this.handleDelete} />
+                            <Form>
+                        <FormGroup>
+                            <Label>Name
                         <Input type='text' name='nameOfOrg' value={this.state.nameOfOrg} onChange={this.handleChange} />
-                    </Label>
-                    <Label>Purpose
+                            </Label>
+                            <Label>Purpose
                         <Input type='text' name='purpose' value={this.state.purpose} onChange={this.handleChange} />
-                    </Label>
-                    <Label>Location
+                            </Label>
+                            <Label>Location
                         <Input type='text' name='location' value={this.state.location} onChange={this.handleChange} />
-                    </Label>
-                    <Label>Needs
+                            </Label>
+                            <Label>Needs
                         <Input type='text' name='needs' value={this.state.needs} onChange={this.handleChange} />
-                    </Label>
-                </FormGroup>
-            </Form>
-            </div>
-        )
+                            </Label>
+                        </FormGroup>
+                    </Form>
+                            </Col>
+                            <Col id='eventprofile' md='6'>
+                                <EventProfile />
+                            </Col>
+                        </Row>
+                    </Container>
+
+                    <span className='clickhere'>
+                        <p className='clickEvent'>Click <Link to="/eventtable"> here</Link> to Create an Event</p>
+                    </span>
+                    <span className='clickhere'>
+                        <p className='clickOrg'>Click <Link to="/profile"> here</Link> to tell us about your Organization</p>
+                    </span>
+                   
+                </div>
+            )
         }
-        
-    return <div>{"Volunteer Profile"/*Volunteer profile goes in here*/}</div>
+
+        return <div>{"Volunteer Profile"/*Volunteer profile goes in here*/}</div>
     }
 
 
