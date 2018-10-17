@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import './volunteer.css'
 
 
@@ -11,6 +11,7 @@ class EventTable extends Component {
             eventName: '',
             description: '',
             eventLocation: '',
+            showSuccess: false
         };
     }
 
@@ -23,7 +24,7 @@ class EventTable extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/events/creatEvent`, {
+        fetch(`http://localhost:3000/events/createEvent`, {
             method: 'POST',
             body: JSON.stringify(this.state ),
             headers: new Headers({
@@ -34,10 +35,10 @@ class EventTable extends Component {
             // .then((res) => res.json())
             .then((logData) => {
                 this.setState({
-                    nameOfOrg: '',
-                    needs: '',
-                    purpose: '',
-                    location: ''
+                    eventName: '',
+                    description: '',
+                    eventLocation: '',
+                    showSuccess: true
                 })
             })
         }
@@ -65,6 +66,7 @@ class EventTable extends Component {
                     <Button className='submitbutton' type="submit" color="success"> Submit </Button>
                     <Button className='cancelbutton' type="submit" color='grey'><i className="fas fa-times-circle"></i></Button>
                 </Form>
+                {this.state.showSuccess && (<Alert color='success'>Event Created!</Alert>)}
             </div>
         )
     }

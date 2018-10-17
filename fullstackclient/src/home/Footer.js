@@ -5,7 +5,7 @@ import './home.css'
 const Footer = () => {
     return (
         <footer>
-                <p>&copy; Sharity 2018</p>
+                <p>&copy; Sharity 2018 <i className="fas fa-hand-holding-heart"></i></p>
         </footer>
     );
 };

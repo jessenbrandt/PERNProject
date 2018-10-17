@@ -22,8 +22,9 @@ class AuthForm extends Component {
     }
   }
 
-  setSessionState = (token) => {
+  setSessionState = (token, type) => {
     localStorage.setItem('token', token);
+    localStorage.setItem('type', type)
     this.setState({ sessionToken: token });
   }
 

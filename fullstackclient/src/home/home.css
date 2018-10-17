@@ -1,18 +1,24 @@
 footer {
     background-color: rgb(240, 237, 230);
     color: black;
-    margin-top: 9%;
+    margin-top: 3%;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 footer p {
      /* margin-top: 08em!important; */
     text-align: center;
     padding:15px;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 nav {
     background-color: rgb(240, 237, 230);
     height: 53px;
+    font-family: 'Open Sans', sans-serif;
+
 
 }
 
@@ -24,6 +30,8 @@ nav {
 .dropdown {
     background-color: rgb(240, 237, 230);
     padding-left: 5px;
+    font-family: 'Open Sans', sans-serif;
+
 
 }
 
@@ -79,7 +87,7 @@ nav {
 
 .bgJumbo {
     background-image: url(http://www.tvlc.org/wp-content/uploads/2017/06/cork.jpg);
-    border: 15px inset rgb(96, 96, 155);
+    border: 13px ridge rgb(96, 96, 155);
     margin-bottom: 2%;
     margin-top: 0%;
 }
@@ -108,7 +116,7 @@ nav {
 
 .mainMap{
     border: 2px double rgb(9, 7, 80);
-    margin-left: 11%;
+    margin-left: 13%;
     margin-bottom: 1%;
 }
 
@@ -118,9 +126,24 @@ nav {
 
 .h1home {
     font-size: 40pt;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.sharity {
+    font-family: 'Amiri', serif;
+    font-style: italic;
+    font-size: 50pt;
 }
 
 .p{
     font-size: 15pt;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.about{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    font-family: 'Open Sans', sans-serif;
 }
 

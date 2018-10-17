@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
+import axios from "axios"
+
+let errMessage ='';
 
 class Signup extends Component {
     constructor(props) {
@@ -21,28 +24,27 @@ class Signup extends Component {
     }
 
     handleSubmit = (e) => {
-        fetch("http://localhost:3000/user/createuser", {
-            method: 'POST',
-            body: JSON.stringify({ user: this.state }),
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
-        }).then((response) => {
-            console.log(response)
-            if (!response.ok) {
-                throw new Error('Authentication Failed')
-            }
-            return response
+        e.preventDefault();
+        if (this.state.password.length < 6) {
+            errMessage = 'Password must be at least 6 characters';
+            this.setState({showAlert:true});
+            return
         }
-        ).then((data) => {
+        axios("http://localhost:3000/user/createuser", {
+            method: 'POST',
+            data: JSON.stringify({ user: this.state }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((data) => {
             this.setState({ showAlert: false })
-            this.props.setToken(data.sessionToken)
+            this.props.setToken(data.data.sessionToken, data.data.user.type)
             window.location.href = "/" //redirect user to homepage on successful login
         }).catch((error) => {
             console.log(error);
+            errMessage = 'Failed to Authenticate'
             this.setState({ showAlert: true })
         })
-        e.preventDefault()
     }
 
     changeType = (type) => {
@@ -53,7 +55,7 @@ class Signup extends Component {
         return (
             <div>
                 <h1 className="logintitle">Signup</h1>
-                <h6 className="def">Join the Charity Community!</h6>
+                <h6 className="def">Join the Charity Community <i className="fas fa-users"></i></h6>
                 <Form onSubmit={this.handleSubmit} >
                     <FormGroup className='row'>
                         <div className='col-md-2'>
@@ -84,9 +86,9 @@ class Signup extends Component {
                         <Label className="lable" for="password">Password</Label>
                         <Input id="password" type="password" name="password" placeholder="Enter Password" onChange={this.handleChange} />
                     </FormGroup>
-                    <Button type="submit" className='loginbutton'> Submit </Button>
+                    <Button color='success' type="submit" className='loginbutton'> Submit </Button>
                 </Form>
-                {this.state.showAlert && <Alert color='danger'>Incorrect </Alert>}
+                {this.state.showAlert && <Alert color='danger'>{errMessage}</Alert>}
             </div>
         )
     }

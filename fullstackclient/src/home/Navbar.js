@@ -55,7 +55,7 @@ class NavBar extends Component {
                                 <NavItem className='dropdown'>
                                     <NavLink tag={Link} to="/about" active>About Us</NavLink>
                                 </NavItem>
-                                <UncontrolledDropdown nav inNavbar className='dropdown'>
+                                <UncontrolledDropdown nav inNavbar className='dropdown' active>
                                     <DropdownToggle className='dropdown' nav caret>
                                         Volunteers
                                      </DropdownToggle>
@@ -65,7 +65,7 @@ class NavBar extends Component {
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
-                                <UncontrolledDropdown nav inNavbar className='dropdown'>
+                                <UncontrolledDropdown nav inNavbar className='dropdown' active>
                                     <DropdownToggle nav caret className='dropdown'>
                                         Organizations
                                      </DropdownToggle>
@@ -75,20 +75,20 @@ class NavBar extends Component {
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
-                                {this.state.loggedin && <UncontrolledDropdown nav inNavbar className='dropdown'>
+                                {this.state.loggedin && <UncontrolledDropdown nav inNavbar className='dropdown' active>
                                     <DropdownToggle nav caret className='dropdown'>
                                         Profile<i className="far fa-user-circle"></i>
                                     </DropdownToggle>
                                     <DropdownMenu right >
+                                        <DropdownItem className="dropdown">
+                                            <NavLink tag={Link} to="/mainprofile" active>Profile</NavLink>
+                                        </DropdownItem>
                                         <DropdownItem className='dropdown'>
                                             <NavLink onClick={this.logOut} active>Logout</NavLink>
                                         </DropdownItem>
-                                        <DropdownItem className="dropdown">
-                                <NavLink tag={Link} to="/mainprofile" active>Profile</NavLink>
-                                </DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>}
-                                {!this.state.loggedin && <NavItem className='dropdown'>
+                                {!this.state.loggedin && <NavItem className='dropdown' active>
                                     <NavLink tag={Link} to="/authform" className='dropdown' active>Signup/ Login <i className="far fa-user-circle"></i></NavLink>
                                 </NavItem>}
                             </Nav>

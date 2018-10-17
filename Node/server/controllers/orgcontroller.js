@@ -7,7 +7,7 @@ const validateSession = require('../middleware/validate-session')
 
 router.get('/', (req, res) => ( 
     Org.findAll({
-        attributes: ['nameOfOrg','location','needs','purpose']
+        attributes: ['id','nameOfOrg','location','needs','purpose']
     })
     .then(org => res.status(200).json(org))
     .catch(err => res.status(500).json({ error: err}))
@@ -22,7 +22,6 @@ router.post('/createOrg', validateSession, (req, res) => {
     }).catch(err => {console.log(err)})
         .then(
             createSuccess = (org) => {
-                console.log('sdokjsdkf')
                 let token = jwt.sign({ id: org.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 })
 
                 res.json({
@@ -35,24 +34,24 @@ router.post('/createOrg', validateSession, (req, res) => {
         ).catch(err => {console.log(err)})
 })
 
-router.get('/:nameofOrg', (req, res) => {
-    Org.findOne({where: {nameOfOrg: req.params.nameOfOrg}})
+router.get('/:id', (req, res) => {
+    Org.findOne({where: {id: req.params.id}})
     .then(org => res.status(200).json(org))
     .catch(err => res.status(500).json({ error: err}))
 })
 
-router.put('/:nameOfOrg', validateSession, (req, res) => {
+router.put('/:id', validateSession, (req, res) => {
     if (!req.errors) {
-        Org.update(req.body,{ where: {nameOfOrg: req.params.nameOfOrg}})
+        Org.update(req.body,{ where: {id: req.params.id}})
         .then(org => res.status(200).json(org))
-        .catch(err => res.json(req.errors))
+        .catch(err => console.log(err))
     } else {
         res.status(500).json(req.errors)
     }
 });
 
-router.delete('/:nameOfOrg', validateSession, (req, res) => {
-    Org.destroy({where: {nameOfOrg: req.params.nameOfOrg}})
+router.delete('/:id', validateSession, (req, res) => {
+    Org.destroy({where: {id: req.params.id}})
     .then(org => res.status(200).json(org))
     .catch(err => res.status(500).json({error: err}))
 });

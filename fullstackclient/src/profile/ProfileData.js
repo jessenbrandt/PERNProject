@@ -1,20 +1,30 @@
 import React from 'react';
+import {Button} from 'reactstrap'
 
-const DataResults = ({ results }) => {
-    const resultsFormatted = results.map((element, index) =>
-        <div key={index} className="orgdisplay">
-            <h5 className='orgname'>{results[index].nameOfOrg}</h5>
-            <p className='aboutorg'>{results[index].purpose}</p>
-            <p className='aboutorg'>{results[index].location}</p>
-            <p className='aboutorg'>{results[index].needs}</p>
-        </div>
-    )
+export default class DataResults extends React.Component {
+     createResults = () => {
+        if(!!this.props.results[0]) {
+            return this.props.results.map((index) => {
+                return (
+                    <div key={index.id} className="orgdisplay">
+                        <h5 className='orgname'>{index.nameOfOrg}</h5>
+                        <p className='aboutorg'>{index.purpose}</p>
+                        <p className='aboutorg'>{index.location}</p>
+                        <p className='aboutorg'>{index.needs}</p>
+                        <Button color='warning' key={"a" + index.id} onClick={this.props.update}>Update</Button>
+                        <Button color='danger' key={"b" + index.id} onClick={this.props.delete}>Delete</Button>
+                    </div>
+                )}
+            )
+        }
+            
+     }
 
-    return (
-        <div>
-            {resultsFormatted}
-        </div>
-    )
+     render() {
+        return (
+            <div>
+                {this.createResults()}
+            </div>
+        )
+    }
 }
-
-export default DataResults;

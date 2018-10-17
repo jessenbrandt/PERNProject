@@ -5,11 +5,13 @@ const jwt = require('jsonwebtoken');
 
 router.post('/createuser', (req, res) => {
     User.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        type: req.body.type,
-        password: bcrypt.hashSync(req.body.password, 10)
+        firstName: req.body.user.firstname,
+        lastName: req.body.user.lastname,
+        email: req.body.user.email,
+        type: req.body.user.type,
+        password: bcrypt.hashSync(req.body.user.password, 10)
+    }).catch( err => {
+        console.log(err);
     })
         .then(
             createSuccess = (user) => {

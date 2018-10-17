@@ -28,7 +28,7 @@ class Login extends Component {
                 throw new Error('Authentication Failed')
             }
             this.setState({showAlert: false})
-            this.props.setToken(response.data.sessionToken);
+            this.props.setToken(response.data.sessionToken, response.data.user.type);
             window.location.href = "/" //redirect user to homepage on successful login
         }).catch((error) => {
             console.log(error);
@@ -41,7 +41,7 @@ class Login extends Component {
         return(
             <div>
                 <h1 className="logintitle">Login</h1>
-                <h6 className="def">Welcome Back, Fool.</h6>
+                <h6 className="def">Welcome Back!</h6>
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label className="lable" for="email">Email</Label>
@@ -51,7 +51,7 @@ class Login extends Component {
                         <Label className="lable" for="password">Password</Label>
                         <Input id="li_password" type="password" name="password" placeholder="Enter Password"  onChange={this.handleChange} />
                     </FormGroup>
-                    <Button type="submit"  className="loginbutton"> Submit </Button>
+                    <Button color='success' type="submit"  className="loginbutton"> Submit </Button>
                 </Form>
                 {this.state.showAlert && <Alert color='danger'>Incorrect Email or Password</Alert>}
             </div>

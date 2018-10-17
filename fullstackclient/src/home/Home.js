@@ -31,7 +31,7 @@ class Home extends React.Component {
                     </div>
                 </Jumbotron>
                 <div className='mainhome'>
-                    <h1 className='h1home'>Welcome to Sharity!</h1>
+                    <h1 className='h1home'>Welcome to <span className='sharity'>Sharity!</span></h1>
                     <p className='p'>Checkout some of our local charities near you</p>
                     <div className='home'>
                         <div className='mainMap'><Maps /></div>

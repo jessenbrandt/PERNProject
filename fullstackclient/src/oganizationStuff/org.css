@@ -1,11 +1,14 @@
 .orgname {
     margin-left: 1.5%;
     margin-top: 1%;
-
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
 }
 
 .aboutorg {
     margin-left: 4%;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 /* .orgdisplay .aboutorg {

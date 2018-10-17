@@ -7,7 +7,7 @@ import './auth.css';
 const Auth = (props) => {
     return (
 
-        <div>
+        <div >
             <div className='bg'>
             <Container className="auth-container">
                 <Row>
